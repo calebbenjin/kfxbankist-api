@@ -47,20 +47,20 @@ const router = express.Router()
 //   },
 // })
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'uploads/')
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
-  }
-});
+// const storage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     cb(null, 'uploads/')
+//   },
+//   filename: function (req, file, cb) {
+//     cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
+//   }
+// });
 
-const upload = multer({ storage });
+// const upload = multer({ storage });
 
 router.route('/').get(getAllUsers)
 router.route('/status').post(checkPaymentStatus)
-router.route('/signup').post(upload.single('image'), createAccount)
+router.route('/signup').post(createAccount)
 router.route('/authenticate').post(loginUser)
 
 router.route('/:id').get(getUser).patch(updateUser).delete(deleteUser)

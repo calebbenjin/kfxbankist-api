@@ -1,46 +1,46 @@
-const path = require('path')
-const express = require('express')
-const multer = require('multer')
-const {createAccount,} = require('../controllers/userController.js')
-import cors from 'cors';
+// const path = require('path')
+// const express = require('express')
+// const multer = require('multer')
+// const {createAccount,} = require('../controllers/userController.js')
+// import cors from 'cors';
 
 
 
-const router = express.Router()
+// const router = express.Router()
 
-const storage = multer.diskStorage({
-  destination(req, file, cb) {
-    cb(null, 'uploads/')
-  },
-  filename(req, file, cb) {
-    cb(
-      null,
-      `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`
-    )
-  },
-})
+// const storage = multer.diskStorage({
+//   destination(req, file, cb) {
+//     cb(null, 'uploads/')
+//   },
+//   filename(req, file, cb) {
+//     cb(
+//       null,
+//       `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`
+//     )
+//   },
+// })
 
-function checkFileType(file, cb) {
-  const filetypes = /jpg|jpeg|png/
-  const extname = filetypes.test(path.extname(file.originalname).toLowerCase())
-  const mimetype = filetypes.test(file.mimetype)
+// function checkFileType(file, cb) {
+//   const filetypes = /jpg|jpeg|png/
+//   const extname = filetypes.test(path.extname(file.originalname).toLowerCase())
+//   const mimetype = filetypes.test(file.mimetype)
 
-  if (extname && mimetype) {
-    return cb(null, true)
-  } else {
-    cb('Images only!')
-  }
-}
+//   if (extname && mimetype) {
+//     return cb(null, true)
+//   } else {
+//     cb('Images only!')
+//   }
+// }
 
-const upload = multer({
-  storage,
-  fileFilter: function (req, file, cb) {
-    checkFileType(file, cb)
-  },
-})
-
-
-router.post('/signup', upload.single('image'), createAccount);
+// const upload = multer({
+//   storage,
+//   fileFilter: function (req, file, cb) {
+//     checkFileType(file, cb)
+//   },
+// })
 
 
-export default router
+// router.post('/signup', upload.single('image'), createAccount);
+
+
+// export default router
